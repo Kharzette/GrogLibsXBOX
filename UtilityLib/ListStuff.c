@@ -1,4 +1,4 @@
-#include	<windef.h>
+#include	<xtl.h>
 #include	"utlist.h"
 #include	"utstring.h"
 

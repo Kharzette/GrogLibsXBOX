@@ -20,7 +20,7 @@ extern D3DTexture	*GD_CreateTexture(GraphicsDevice *pGD,
 
 //shader creation stuff
 extern DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,
-					const DWORD *pDecl,	const BYTE *pCodeBytes);
+					const DWORD *pDecl,	const DWORD *pCodeBytes);
 extern DWORD	GD_CreatePixelShader(GraphicsDevice *pGD,
 					const D3DPIXELSHADERDEF *pCodeBytes);
 

@@ -18,13 +18,16 @@ typedef struct GraphicsDevice_t
 //try to make a device
 BOOL	GD_Init(GraphicsDevice **ppGD, int w, int h)
 {
-	HRESULT	hres;
+	HRESULT					hres;
+	GraphicsDevice			*pGD;
+	D3DPRESENT_PARAMETERS	pp;
+
 
 	//alloc
 	*ppGD	=malloc(sizeof(GraphicsDevice));
 	memset(*ppGD, 0, sizeof(GraphicsDevice));
 
-	GraphicsDevice	*pGD	=*ppGD;
+	pGD	=*ppGD;
 
 	pGD->mWidth		=w;
 	pGD->mHeight	=h;
@@ -33,11 +36,10 @@ BOOL	GD_Init(GraphicsDevice **ppGD, int w, int h)
 	if(pGD->mpD3D == NULL)
 	{
 		free(pGD);
-		printf("D3D init failed: %s\n", SDL_GetError());
+		printf("D3D init failed: %s\n", GetLastError());
 		return	FALSE;
 	}
 
-	D3DPRESENT_PARAMETERS	pp;
 	memset(&pp, 0, sizeof(pp));
 
 	pp.BackBufferWidth			=w;
@@ -111,7 +113,7 @@ D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD, BYTE **pRows, int w, int h, int 
 	//tex create
 	hr	=D3DXCreateTexture(pGD->mpDevice, w, h, 0, 0,
 		(bAlpha)? D3DFMT_A8R8G8B8 : D3DFMT_X8R8G8B8,
-		D3DPOOL_MANAGED, pRet);
+		D3DPOOL_MANAGED, &pRet);
 
 	if(hr != S_OK)
 	{
@@ -121,36 +123,39 @@ D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD, BYTE **pRows, int w, int h, int 
 
 	//get data into a linear chunk
 	D3DTexture_LockRect(pRet, 0, &lock, NULL, 0);
-	BYTE	*pBytes	=(BYTE *)lock.pBits;
 
-	if(rowPitch > (w * 3))
 	{
-		//already has alpha?
-		for(int y=0;y < h;y++)
-		{
-			memcpy(pBytes + (y * lock.Pitch), pRows[y], rowPitch);
-		}
-		bAlpha	=TRUE;
-	}
-	else
-	{
-		for(int y=0;y < h;y++)
-		{
-			BYTE *pRow	=pBytes + (y * (w * lock.Pitch));
+		BYTE	*pBytes	=(BYTE *)lock.pBits;
+		int		x, y;
 
-			for(int x=0;x < w;x++)
+		if(rowPitch > (w * 3))
+		{
+			//already has alpha?
+			for(y=0;y < h;y++)
 			{
-				int	ofs3	=x * 3;
-				int	ofs4	=x * 4;
+				memcpy(pBytes + (y * lock.Pitch), pRows[y], rowPitch);
+			}
+			bAlpha	=TRUE;
+		}
+		else
+		{
+			for(y=0;y < h;y++)
+			{
+				BYTE *pRow	=pBytes + (y * (w * lock.Pitch));
 
-				pRow[ofs4]		=pRows[y][ofs3];
-				pRow[ofs4 + 1]	=pRows[y][ofs3 + 1];
-				pRow[ofs4 + 2]	=pRows[y][ofs3 + 2];
-				pRow[ofs4 + 3]	=0xFF;
+				for(x=0;x < w;x++)
+				{
+					int	ofs3	=x * 3;
+					int	ofs4	=x * 4;
+
+					pRow[ofs4]		=pRows[y][ofs3];
+					pRow[ofs4 + 1]	=pRows[y][ofs3 + 1];
+					pRow[ofs4 + 2]	=pRows[y][ofs3 + 2];
+					pRow[ofs4 + 3]	=0xFF;
+				}
 			}
 		}
 	}
-
 	D3DTexture_UnlockRect(pRet, 0);
 
 	return	pRet;
@@ -159,7 +164,7 @@ D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD, BYTE **pRows, int w, int h, int 
 
 
 DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,
-	const DWORD *pDecl,	const BYTE *pCodeBytes)
+	const DWORD *pDecl,	const DWORD *pCodeBytes)
 {
 	DWORD	retHandle;
 
@@ -169,7 +174,7 @@ DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,
 	if(hr != S_OK)
 	{
 		printf("Error creating vertex shader: %X\n", hr);
-		return	NULL;
+		return	-1;
 	}
 	return	retHandle;
 }
@@ -184,7 +189,7 @@ DWORD	GD_CreatePixelShader(GraphicsDevice *pGD,
 	if(hr != S_OK)
 	{
 		printf("Error creating pixel shader: %X\n", hr);
-		return	NULL;
+		return	-1;
 	}
 	return	retHandle;
 }

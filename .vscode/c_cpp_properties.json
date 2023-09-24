@@ -28,7 +28,7 @@
             ],
             "windowsSdkVersion": "10.0.18362.0",
             "compilerPath": "C:/Program Files (x86)/Microsoft Xbox SDK/xbox/bin/vc71/cl.exe",
-            "cStandard": "c17",
+            "cStandard": "c89",
             "cppStandard": "c++17",
             "intelliSenseMode": "windows-msvc-x86"
         }
