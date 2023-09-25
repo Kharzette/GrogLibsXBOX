@@ -214,6 +214,12 @@
 				RelativePath=".\UtilityLib\MiscStuff.h">
 			</File>
 			<File
+				RelativePath=".\UtilityLib\PrimFactory.c">
+			</File>
+			<File
+				RelativePath=".\UtilityLib\PrimFactory.h">
+			</File>
+			<File
 				RelativePath=".\UtilityLib\StringStuff.c">
 			</File>
 			<File
@@ -230,9 +236,6 @@
 			Name="MaterialLib"
 			Filter="">
 		</Filter>
-		<File
-			RelativePath=".\ReadMe.txt">
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

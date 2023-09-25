@@ -162,6 +162,50 @@ D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD, BYTE **pRows, int w, int h, int 
 }
 
 
+HRESULT	GD_CreateVertexBuffer(GraphicsDevice *pGD, void *pVertData,
+				DWORD len, LPDIRECT3DVERTEXBUFFER8 *ppVB)
+{
+	BYTE	*pVBData;
+	HRESULT	hres;
+
+	*ppVB	=D3DDevice_CreateVertexBuffer2(len);
+	
+	hres	=IDirect3DVertexBuffer8_Lock(*ppVB, 0, 0, &pVBData, 0);
+	if(FAILED(hres))
+	{
+		IDirect3DVertexBuffer8_Release(*ppVB);
+		return	hres;
+	}
+
+	memcpy(pVBData, pVertData, len);
+
+	IDirect3DVertexBuffer8_Unlock(*ppVB);
+
+	return	S_OK;
+}
+
+HRESULT	GD_CreateIndexBuffer(GraphicsDevice *pGD, void *pIdxData,
+				DWORD len, LPDIRECT3DINDEXBUFFER8 *ppIB)
+{
+	BYTE	*pIBData;
+	HRESULT	hres;
+
+	*ppIB	=D3DDevice_CreateIndexBuffer2(len);
+	
+	hres	=IDirect3DIndexBuffer8_Lock(*ppIB, 0, 0, &pIBData, 0);
+	if(FAILED(hres))
+	{
+		IDirect3DIndexBuffer8_Release(*ppIB);
+		return	hres;
+	}
+
+	memcpy(pIBData, pIdxData, len);
+
+	IDirect3DIndexBuffer8_Unlock(*ppIB);
+
+	return	S_OK;
+}
+
 
 DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,
 	const DWORD *pDecl,	const DWORD *pCodeBytes)

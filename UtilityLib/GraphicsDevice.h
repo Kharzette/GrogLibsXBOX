@@ -15,12 +15,16 @@ extern HRESULT	GD_EndScene(GraphicsDevice *pGD);
 extern int	GD_GetWidth(const GraphicsDevice *pGD);
 extern int	GD_GetHeight(const GraphicsDevice *pGD);
 
-//resource creation
+//resource creation / destruction
 extern D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD,
 						BYTE **pRows, int w, int h, int rowPitch);
 extern D3DTexture	*GD_CreateTexture(GraphicsDevice *pGD,
 						int w, int h, int numMips,
 						DWORD usage, D3DFORMAT format);
+extern HRESULT	GD_CreateVertexBuffer(GraphicsDevice *pGD, void *pVertData,
+					DWORD len, LPDIRECT3DVERTEXBUFFER8 *ppVB);
+extern HRESULT	GD_CreateIndexBuffer(GraphicsDevice *pGD, void *pIdxData,
+					DWORD len, LPDIRECT3DINDEXBUFFER8 *ppIB);
 
 //shader creation stuff
 extern DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,
