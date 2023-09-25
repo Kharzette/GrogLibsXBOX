@@ -193,3 +193,25 @@ DWORD	GD_CreatePixelShader(GraphicsDevice *pGD,
 	}
 	return	retHandle;
 }
+
+HRESULT	GD_Present(GraphicsDevice *pGD)
+{
+	return	IDirect3DDevice8_Present(pGD->mpDevice, NULL, NULL, NULL, NULL);
+}
+
+HRESULT	GD_Clear(GraphicsDevice *pGD, D3DCOLOR clearColour)
+{
+	return	IDirect3DDevice8_Clear(pGD->mpDevice, 0, NULL,
+		D3DCLEAR_TARGET|D3DCLEAR_ZBUFFER|D3DCLEAR_STENCIL,
+		clearColour, 1.0f, 0L);
+}
+
+HRESULT	GD_BeginScene(GraphicsDevice *pGD)
+{
+	return	IDirect3DDevice8_BeginScene(pGD->mpDevice);
+}
+
+HRESULT	GD_EndScene(GraphicsDevice *pGD)
+{
+	return	IDirect3DDevice8_EndScene(pGD->mpDevice);
+}

@@ -42,7 +42,7 @@ typedef	struct	UpdateTimer_t
 	BOOL	mbFixedStep;		//use a fixed time stamp for game/physics updates?
 	BOOL	mbSpendRemainder;	//spend or roll over the small remainder?
 	UINT64	mStep;				//fixed step in tics
-	UINT64	mFullUpdateTime;	//counts down over the updates for this frame
+	INT64	mFullUpdateTime;	//counts down over the updates for this frame
 }	UpdateTimer;
 
 
@@ -103,7 +103,7 @@ UINT64	UpdateTimer_GetUpdateDeltaTics(const UpdateTimer *pUT)
 {
 	if(pUT->mbFixedStep)
 	{
-		if(pUT->mFullUpdateTime >= pUT->mStep)
+		if(pUT->mFullUpdateTime >= (INT64)pUT->mStep)
 		{
 			return	pUT->mStep;
 		}
@@ -125,7 +125,7 @@ UINT64	UpdateTimer_GetUpdateDeltaTics(const UpdateTimer *pUT)
 		//is nearer to a fixed time slice than zero, and if so, spend
 		//a fixed time slice and go negative, otherwise spend it next frame
 		{
-			UINT64	halfStep	=pUT->mStep / 2;
+			INT64	halfStep	=pUT->mStep / 2;
 			if(pUT->mFullUpdateTime >= halfStep)
 			{
 				return	pUT->mStep;
@@ -153,7 +153,7 @@ void UpdateTimer_UpdateDone(UpdateTimer *pUT)
 {
 	if(pUT->mbFixedStep)
 	{
-		if(pUT->mFullUpdateTime >= pUT->mStep)
+		if(pUT->mFullUpdateTime >= (INT64)pUT->mStep)
 		{
 			pUT->mFullUpdateTime	-=pUT->mStep;
 		}
@@ -166,7 +166,7 @@ void UpdateTimer_UpdateDone(UpdateTimer *pUT)
 			else
 			{
 				//see if a fixed step was spent, sending FullUpdate negative
-				UINT64	halfStep	=pUT->mStep / 2;
+				INT64	halfStep	=pUT->mStep / 2;
 				if(pUT->mFullUpdateTime >= halfStep)
 				{
 					//go negative
@@ -180,7 +180,7 @@ void UpdateTimer_UpdateDone(UpdateTimer *pUT)
 		pUT->mFullUpdateTime	=0;
 	}
 
-	assert(pUT->mFullUpdateTime <= pUT->mMaxDelta);
+	assert(pUT->mFullUpdateTime <= (INT64)pUT->mMaxDelta);
 }
 
 

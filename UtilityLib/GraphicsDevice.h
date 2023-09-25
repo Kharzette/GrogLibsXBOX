@@ -4,8 +4,12 @@
 typedef struct GraphicsDevice_t	GraphicsDevice;
 
 
-extern BOOL	GD_Init(GraphicsDevice **ppGD, int w, int h);
-extern void	GD_Destroy(GraphicsDevice **ppGD);
+extern BOOL		GD_Init(GraphicsDevice **ppGD, int w, int h);
+extern void		GD_Destroy(GraphicsDevice **ppGD);
+extern HRESULT	GD_Present(GraphicsDevice *pGD);
+extern HRESULT	GD_Clear(GraphicsDevice *pGD, D3DCOLOR clearColour);
+extern HRESULT	GD_BeginScene(GraphicsDevice *pGD);
+extern HRESULT	GD_EndScene(GraphicsDevice *pGD);
 
 //gets
 extern int	GD_GetWidth(const GraphicsDevice *pGD);
