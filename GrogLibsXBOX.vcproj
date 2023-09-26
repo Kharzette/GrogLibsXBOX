@@ -236,6 +236,13 @@
 			Name="MaterialLib"
 			Filter="">
 		</Filter>
+		<Filter
+			Name="ShaderLib"
+			Filter="">
+			<File
+				RelativePath=".\ShaderLib\Static.vsh">
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>
