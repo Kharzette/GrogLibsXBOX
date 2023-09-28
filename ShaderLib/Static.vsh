@@ -60,11 +60,21 @@ mul		r4, r3, c15
 //set r6 to 1 if LdotN is less than 0
 slt		r6, r2, r5
 
-//put ABS LdotN in r7
-add		r7, r2, -r6
+//copy 1 into r8 from the w of a vertex
+//hopefully this will always be one
+mov		r8, v0.w
 
-//this SHOULD put 1 in r8
-sge		r8, r7, r5
+//this will put a 2 in r11
+add		r11, r8, r8
+
+//multiply r6 by 2, this will be 0 or 2
+mul		r6, r6, r11
+
+//puts the slt result in the -1 to 1 range
+sub		r6, r6, r8
+
+//put ABS LdotN in r7 by muling by either -1 or 1
+mul		r7, r2, -r6
 
 //r9	=1 - abs(LdotN)
 sub		r9, r8, r7
