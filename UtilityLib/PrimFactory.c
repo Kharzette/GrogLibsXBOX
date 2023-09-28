@@ -27,7 +27,6 @@ PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice
 {
 	int				i;
 	USHORT			idx, indexes[36];
-	size_t			vpntSize;
 	HRESULT			hres;
 	VPosNormTex0	vpnt[24];
     PrimObject		*pObj;
@@ -134,11 +133,11 @@ PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice
 	for(i=idx=0;i < 36;i+=6)
 	{
 		indexes[i]		=idx + 0;
-		indexes[i + 1]	=idx + 1;
-		indexes[i + 2]	=idx + 2;
+		indexes[i + 1]	=idx + 2;
+		indexes[i + 2]	=idx + 1;
 		indexes[i + 3]	=idx + 0;
-		indexes[i + 4]	=idx + 2;
-		indexes[i + 5]	=idx + 3;
+		indexes[i + 4]	=idx + 3;
+		indexes[i + 5]	=idx + 2;
 
 		idx	+=4;
 	}

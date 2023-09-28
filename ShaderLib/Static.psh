@@ -1,0 +1,27 @@
+xps.1.1
+
+//constants
+//c0		eye position
+//trilight stuff http://home.comcast.net/~tom_forsyth/blog.wiki.html#Trilights
+//c1		light color 0 for trilight
+//c2		light 1
+//c3		light 2
+//c4		light direction + specular power in w
+//c5		material colour
+//c6		specular colour
+
+//this is a port of TriSolidPS from shaderlib
+
+//output registers
+//r0		output pixel
+
+//input registers
+//t0		Position in worldspace
+//t1		Normal in worldspace
+//t2		TexCoord0 in xy
+
+//dot light with world normal
+//dp3		r0, c7, v1
+
+//testing if my VS values are coming thru
+mov		r0, v0

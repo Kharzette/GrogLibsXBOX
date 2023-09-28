@@ -224,11 +224,11 @@ DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,
 }
 
 DWORD	GD_CreatePixelShader(GraphicsDevice *pGD,
-	const D3DPIXELSHADERDEF *pCodeBytes)
+	const D3DPIXELSHADERDEF *psDef)
 {
 	DWORD	retHandle;
 	HRESULT	hr	=IDirect3DDevice8_CreatePixelShader(pGD->mpDevice,
-						pCodeBytes, &retHandle);
+						psDef, &retHandle);
 
 	if(hr != S_OK)
 	{
@@ -260,11 +260,17 @@ HRESULT	GD_EndScene(GraphicsDevice *pGD)
 	return	IDirect3DDevice8_EndScene(pGD->mpDevice);
 }
 
-HRESULT	GD_SetShaderConstant(GraphicsDevice *pGD,
+HRESULT	GD_SetVShaderConstant(GraphicsDevice *pGD,
 			int regNum, void *data, DWORD count)
 {
 	//why fast?  Why not!
 	return	IDirect3DDevice8_SetVertexShaderConstantFast(pGD->mpDevice, regNum, data, count);
+}
+
+HRESULT	GD_SetPShaderConstant(GraphicsDevice *pGD,
+			int regNum, void *data, DWORD count)
+{
+	return	IDirect3DDevice8_SetPixelShaderConstant(pGD->mpDevice, regNum, data, count);
 }
 
 HRESULT	GD_SetRenderState(GraphicsDevice *pGD, D3DRENDERSTATETYPE state, DWORD val)
@@ -275,6 +281,11 @@ HRESULT	GD_SetRenderState(GraphicsDevice *pGD, D3DRENDERSTATETYPE state, DWORD v
 HRESULT	GD_SetVertexShader(GraphicsDevice *pGD, DWORD handle)
 {
 	return	IDirect3DDevice8_SetVertexShader(pGD, handle);
+}
+
+HRESULT	GD_SetPixelShader(GraphicsDevice *pGD, DWORD handle)
+{
+	return	IDirect3DDevice8_SetPixelShader(pGD, handle);
 }
 
 HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,

@@ -18,11 +18,11 @@ xvs.1.1
 //output registers
 //oPos		screenspace position
 //oPts		??
-//oT0		worldspace normal
-//oT1		worldspace position
-//oT2		texcoord0
+//oT0		texcoord0
+//oT1		??
+//oT2		??
 //oT3		??
-//oD0		??
+//oD0		Trilight colour at vertex
 //oD1		??
 
 //input registers
@@ -33,17 +33,53 @@ xvs.1.1
 //mul position into world space
 m4x4	r0, v0, c8
 
-//store world position in T1
-mov		oT1, r0
-
 //mul by view
 m4x4	r0, r0, c0
 
 //mul by proj
 m4x4	oPos, r0, c4
 
-//world transform normal and store in T0
-m4x4	oT0, v1, r0
+//world transform normal
+m4x4	r1, v1, c8
 
-//store texcoord in T2
-mov		oT2, v2
+//store texcoord in T0
+mov		oT0, v2
+
+//compute LdotN
+dp3		r2, r1, c16.xyz
+
+//get 0 in r5
+sub		r5, r1, r1
+
+//r3	=max(0, LdotN)
+max		r3, r5, r2.x
+
+//r4	=max(0, LdotN) * color2
+mul		r4, r3, c15
+
+//set r6 to 1 if LdotN is less than 0
+slt		r6, r2, r5
+
+//put ABS LdotN in r7
+add		r7, r2, -r6
+
+//this SHOULD put 1 in r8
+sge		r8, r7, r5
+
+//r9	=1 - abs(LdotN)
+sub		r9, r8, r7
+
+//r9	=(color1 * (1 - abs(LdotN)))
+mul		r9, r9, c14
+
+//r10	=max(0, -LdotN)
+max		r10, r5, -r2.x
+
+//r10	=(color0 * max(0, -LdotN))
+mul		r10, r10, c13
+
+//r4	=(c2 * max(0, LdotN)) + (c1 * (1 - abs(LdotN)))
+add		r4, r4, r9
+
+//D0	=(c2 * max(0, LdotN)) + (c1 * (1 - abs(LdotN))) + (c0 * max(0, -LdotN))
+add		oD0, r4, r10
