@@ -11,6 +11,7 @@ typedef struct	PrimObject_t
 
 	int		mVertCount;		//num verts
 	int		mIndexCount;	//num indexes
+	UINT	mStride;
 }	PrimObject;
 
 PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice *pGD);

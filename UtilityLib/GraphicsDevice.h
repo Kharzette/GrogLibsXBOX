@@ -6,14 +6,27 @@ typedef struct GraphicsDevice_t	GraphicsDevice;
 
 extern BOOL		GD_Init(GraphicsDevice **ppGD, int w, int h);
 extern void		GD_Destroy(GraphicsDevice **ppGD);
+
 extern HRESULT	GD_Present(GraphicsDevice *pGD);
 extern HRESULT	GD_Clear(GraphicsDevice *pGD, D3DCOLOR clearColour);
 extern HRESULT	GD_BeginScene(GraphicsDevice *pGD);
 extern HRESULT	GD_EndScene(GraphicsDevice *pGD);
+extern HRESULT	GD_DrawIndexedPrimitive(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,
+								UINT startIdx, UINT primCount);
 
 //gets
 extern int	GD_GetWidth(const GraphicsDevice *pGD);
 extern int	GD_GetHeight(const GraphicsDevice *pGD);
+
+//sets
+extern HRESULT	GD_SetShaderConstant(GraphicsDevice *pGD,
+					int regNum, void *data, DWORD count);
+extern HRESULT	GD_SetRenderState(GraphicsDevice *pGD,
+					D3DRENDERSTATETYPE state, DWORD val);
+extern HRESULT	GD_SetVertexShader(GraphicsDevice *pGD, DWORD handle);
+extern HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,
+					D3DVertexBuffer *pVB, UINT stride);
+extern HRESULT	GD_SetIndices(GraphicsDevice *pGD, D3DIndexBuffer *pInds, UINT baseVert);
 
 //resource creation / destruction
 extern D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD,

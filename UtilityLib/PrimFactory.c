@@ -7,7 +7,7 @@
 typedef struct	VPosNormTex0_t
 {
 	D3DXVECTOR3		Position;
-	D3DXVECTOR4		Normal;
+	D3DXVECTOR3		Normal;
 	D3DXVECTOR2		TexCoord0;
 }	VPosNormTex0;
 
@@ -16,12 +16,12 @@ typedef struct	VPosNormTex0_t
 static	D3DXVECTOR3	UnitX	={	1.0f, 0.0f, 0.0f	};
 static	D3DXVECTOR3	UnitY	={	0.0f, 1.0f, 0.0f	};
 static	D3DXVECTOR3	UnitZ	={	0.0f, 0.0f, 1.0f	};
-static	D3DXVECTOR4	xnorm	={	1.0f, 0.0f, 0.0f, 1.0f	};
-static	D3DXVECTOR4	ynorm	={	0.0f, 1.0f, 0.0f, 1.0f	};
-static	D3DXVECTOR4	znorm	={	0.0f, 0.0f, 1.0f, 1.0f	};
-static	D3DXVECTOR4	nxnorm	={	-1.0f, 0.0f, 0.0f, 1.0f	};
-static	D3DXVECTOR4	nynorm	={	0.0f, -1.0f, 0.0f, 1.0f	};
-static	D3DXVECTOR4	nznorm	={	0.0f, 0.0f, -1.0f, 1.0f	};
+static	D3DXVECTOR3	xnorm	={	1.0f, 0.0f, 0.0f	};
+static	D3DXVECTOR3	ynorm	={	0.0f, 1.0f, 0.0f	};
+static	D3DXVECTOR3	znorm	={	0.0f, 0.0f, 1.0f	};
+static	D3DXVECTOR3	nxnorm	={	-1.0f, 0.0f, 0.0f	};
+static	D3DXVECTOR3	nynorm	={	0.0f, -1.0f, 0.0f	};
+static	D3DXVECTOR3	nznorm	={	0.0f, 0.0f, -1.0f	};
 
 PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice *pGD)
 {
@@ -143,8 +143,6 @@ PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice
 		idx	+=4;
 	}
 
-	vpntSize	=sizeof(VPosNormTex0);
-
 	//return object
 	pObj	=malloc(sizeof(PrimObject));
 	if(pObj == NULL)
@@ -154,9 +152,10 @@ PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice
 
 	pObj->mVertCount	=24;
 	pObj->mIndexCount	=36;
+	pObj->mStride		=sizeof(VPosNormTex0);
 
 	//make vertex buffer
-	hres	=GD_CreateVertexBuffer(pGD, vpnt, vpntSize * 24, &pObj->mpVB);
+	hres	=GD_CreateVertexBuffer(pGD, vpnt, pObj->mStride * 24, &pObj->mpVB);
 	if(FAILED(hres))
 	{
 		free(pObj);

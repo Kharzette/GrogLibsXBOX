@@ -20,7 +20,7 @@ xvs.1.1
 //oPts		??
 //oT0		worldspace normal
 //oT1		worldspace position
-//oT2		??
+//oT2		texcoord0
 //oT3		??
 //oD0		??
 //oD1		??
@@ -30,29 +30,20 @@ xvs.1.1
 //v1		Normal
 //v2		TexCoord0 in xy
 
-//store world matrix in r0
-mov		r0, c8
-mov		r1, c9
-mov		r2, c10
-mov		r3, c11
+//mul position into world space
+m4x4	r0, v0, c8
 
-//mul and store worldview matrix in r4-r7
-mul		r4, c8, r0
-mul		r5, c9, r1
-mul		r6, c10, r2
-mul		r7, c11, r3
+//store world position in T1
+mov		oT1, r0
 
-//mul wv by projection
-mul		r4, r4, c4
-mul		r5, r5, c5
-mul		r6, r6, c6
-mul		r7, r7, c7
+//mul by view
+m4x4	r0, r0, c0
 
-//transform position
-m4x4	oPos, v0, r4
+//mul by proj
+m4x4	oPos, r0, c4
 
 //world transform normal and store in T0
 m4x4	oT0, v1, r0
 
-//world transform position and store in T1
-m4x4	oT1, v2, r0
+//store texcoord in T2
+mov		oT2, v2

@@ -259,3 +259,37 @@ HRESULT	GD_EndScene(GraphicsDevice *pGD)
 {
 	return	IDirect3DDevice8_EndScene(pGD->mpDevice);
 }
+
+HRESULT	GD_SetShaderConstant(GraphicsDevice *pGD,
+			int regNum, void *data, DWORD count)
+{
+	//why fast?  Why not!
+	return	IDirect3DDevice8_SetVertexShaderConstantFast(pGD->mpDevice, regNum, data, count);
+}
+
+HRESULT	GD_SetRenderState(GraphicsDevice *pGD, D3DRENDERSTATETYPE state, DWORD val)
+{
+	return	IDirect3DDevice8_SetRenderState(pGD->mpDevice, state, val);
+}
+
+HRESULT	GD_SetVertexShader(GraphicsDevice *pGD, DWORD handle)
+{
+	return	IDirect3DDevice8_SetVertexShader(pGD, handle);
+}
+
+HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,
+				D3DVertexBuffer *pVB, UINT stride)
+{
+	return	IDirect3DDevice8_SetStreamSource(pGD->mpDevice, streamNum, pVB, stride);
+}
+
+HRESULT	GD_SetIndices(GraphicsDevice *pGD, D3DIndexBuffer *pInds, UINT baseVert)
+{
+	return	IDirect3DDevice8_SetIndices(pGD->mpDevice, pInds, baseVert);
+}
+
+HRESULT	GD_DrawIndexedPrimitive(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,
+								UINT startIdx, UINT primCount)
+{
+	return	IDirect3DDevice8_DrawIndexedPrimitive(pGD->mpDevice, primType, 0, 0, startIdx, primCount);
+}
