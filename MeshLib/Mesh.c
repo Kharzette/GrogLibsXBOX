@@ -28,43 +28,44 @@ typedef struct	Mesh_t
 
 //C# stored types, but we just need the size
 //dumped from MeshDumpTypes
-size_t	sTypeSizes[110]	={
+size_t	sTypeSizes[112]	={
 	12, 20, 24, 16, 20, 24, 28, 16, 20, 24, 
-	28, 20, 24, 28, 32, 24, 28, 32, 36, 28, 
-	32, 36, 40, 32, 36, 40, 44, 28, 32, 36, 
-	40, 28, 32, 36, 40, 32, 36, 40, 44, 36, 
-	40, 44, 48, 40, 44, 48, 52, 44, 48, 52, 
-	56, 24, 28, 32, 36, 24, 28, 32, 36, 28, 
-	32, 36, 40, 32, 36, 40, 44, 36, 40, 44, 
-	48, 40, 44, 48, 52, 36, 40, 44, 48, 36, 
-	40, 44, 48, 40, 44, 48, 52, 44, 48, 52, 
-	56, 48, 52, 56, 60, 52, 56, 60, 64, 32, 
-	44, 32, 40, 28, 32, 48, 48, 44, 40, 80	};
+	28, 20, 24, 28, 32, 24, 28, 32, 36, 28,
+	32, 36, 40, 32, 36, 40, 44, 28, 32, 36,
+	40, 28, 32, 36, 40, 32, 36, 40, 44, 36,
+	40, 44, 48, 40, 44, 48, 52, 44, 48, 52,
+	56, 24, 28, 32, 36, 24, 28, 32, 36, 28,
+	32, 36, 40, 32, 36, 40, 44, 36, 40, 44,
+	48, 40, 44, 48, 52, 36, 40, 44, 48, 36,
+	40, 44, 48, 40, 44, 48, 52, 44, 48, 52,
+	56, 48, 52, 56, 60, 52, 56, 60, 64, 32,
+	44, 32, 40, 28, 32, 48, 48, 44, 40, 80,
+	36, 32	};
 
-const char *sTypeNames[110]	={
-	"VPos", "VPosNorm", "VPosBone", "VPosTex0", "VPosTex0Tex1", 
-	"VPosTex0Tex1Tex2", "VPosTex0Tex1Tex2Tex3", "VPosCol0", "VPosCol0Col1", "VPosCol0Col1Col2", 
-	"VPosCol0Col1Col2Col3", "VPosTex0Col0", "VPosTex0Col0Col1", "VPosTex0Col0Col1Col2", "VPosTex0Col0Col1Col2Col3", 
-	"VPosTex0Tex1Col0", "VPosTex0Tex1Col0Col1", "VPosTex0Tex1Col0Col1Col2", "VPosTex0Tex1Col0Col1Col2Col3", "VPosTex0Tex1Tex2Col0", 
-	"VPosTex0Tex1Tex2Col0Col1", "VPosTex0Tex1Tex2Col0Col1Col2", "VPosTex0Tex1Tex2Col0Col1Col2Col3", "VPosTex0Tex1Tex2Tex3Col0", "VPosTex0Tex1Tex2Tex3Col0Col1", 
-	"VPosTex0Tex1Tex2Tex3Col0Col1Col2", "VPosTex0Tex1Tex2Tex3Col0Col1Col2Col3", "VPosBoneTex0", "VPosBoneTex0Tex1", "VPosBoneTex0Tex1Tex2", 
-	"VPosBoneTex0Tex1Tex2Tex3", "VPosBoneCol0", "VPosBoneCol0Col1", "VPosBoneCol0Col1Col2", "VPosBoneCol0Col1Col2Col3", 
-	"VPosBoneTex0Col0", "VPosBoneTex0Col0Col1", "VPosBoneTex0Col0Col1Col2", "VPosBoneTex0Col0Col1Col2Col3", "VPosBoneTex0Tex1Col0", 
-	"VPosBoneTex0Tex1Col0Col1", "VPosBoneTex0Tex1Col0Col1Col2", "VPosBoneTex0Tex1Col0Col1Col2Col3", "VPosBoneTex0Tex1Tex2Col0", "VPosBoneTex0Tex1Tex2Col0Col1", 
-	"VPosBoneTex0Tex1Tex2Col0Col1Col2", "VPosBoneTex0Tex1Tex2Col0Col1Col2Col3", "VPosBoneTex0Tex1Tex2Tex3Col0", "VPosBoneTex0Tex1Tex2Tex3Col0Col1", "VPosBoneTex0Tex1Tex2Tex3Col0Col1Col2", 
-	"VPosBoneTex0Tex1Tex2Tex3Col0Col1Col2Col3", "VPosNormTex0", "VPosNormTex0Tex1", "VPosNormTex0Tex1Tex2", "VPosNormTex0Tex1Tex2Tex3", 
+const char *sTypeNames[112]	={
+	"VPos", "VPosNorm", "VPosBone", "VPosTex0", "VPosTex0Tex1",
+	"VPosTex0Tex1Tex2", "VPosTex0Tex1Tex2Tex3", "VPosCol0", "VPosCol0Col1", "VPosCol0Col1Col2",
+	"VPosCol0Col1Col2Col3", "VPosTex0Col0", "VPosTex0Col0Col1", "VPosTex0Col0Col1Col2", "VPosTex0Col0Col1Col2Col3",
+	"VPosTex0Tex1Col0", "VPosTex0Tex1Col0Col1", "VPosTex0Tex1Col0Col1Col2", "VPosTex0Tex1Col0Col1Col2Col3", "VPosTex0Tex1Tex2Col0",
+	"VPosTex0Tex1Tex2Col0Col1", "VPosTex0Tex1Tex2Col0Col1Col2", "VPosTex0Tex1Tex2Col0Col1Col2Col3", "VPosTex0Tex1Tex2Tex3Col0", "VPosTex0Tex1Tex2Tex3Col0Col1",
+	"VPosTex0Tex1Tex2Tex3Col0Col1Col2", "VPosTex0Tex1Tex2Tex3Col0Col1Col2Col3", "VPosBoneTex0", "VPosBoneTex0Tex1", "VPosBoneTex0Tex1Tex2",
+	"VPosBoneTex0Tex1Tex2Tex3", "VPosBoneCol0", "VPosBoneCol0Col1", "VPosBoneCol0Col1Col2", "VPosBoneCol0Col1Col2Col3",
+	"VPosBoneTex0Col0", "VPosBoneTex0Col0Col1", "VPosBoneTex0Col0Col1Col2", "VPosBoneTex0Col0Col1Col2Col3", "VPosBoneTex0Tex1Col0",
+	"VPosBoneTex0Tex1Col0Col1", "VPosBoneTex0Tex1Col0Col1Col2", "VPosBoneTex0Tex1Col0Col1Col2Col3", "VPosBoneTex0Tex1Tex2Col0", "VPosBoneTex0Tex1Tex2Col0Col1",
+	"VPosBoneTex0Tex1Tex2Col0Col1Col2", "VPosBoneTex0Tex1Tex2Col0Col1Col2Col3", "VPosBoneTex0Tex1Tex2Tex3Col0", "VPosBoneTex0Tex1Tex2Tex3Col0Col1", "VPosBoneTex0Tex1Tex2Tex3Col0Col1Col2",
+	"VPosBoneTex0Tex1Tex2Tex3Col0Col1Col2Col3", "VPosNormTex0", "VPosNormTex0Tex1", "VPosNormTex0Tex1Tex2", "VPosNormTex0Tex1Tex2Tex3",
 	"VPosNormCol0", "VPosNormCol0Col1", "VPosNormCol0Col1Col2", "VPosNormCol0Col1Col2Col3", "VPosNormTex0Col0", 
-	"VPosNormTex0Col0Col1", "VPosNormTex0Col0Col1Col2", "VPosNormTex0Col0Col1Col2Col3", "VPosNormTex0Tex1Col0", "VPosNormTex0Tex1Col0Col1", 
-	"VPosNormTex0Tex1Col0Col1Col2", "VPosNormTex0Tex1Col0Col1Col2Col3", "VPosNormTex0Tex1Tex2Col0", "VPosNormTex0Tex1Tex2Col0Col1", "VPosNormTex0Tex1Tex2Col0Col1Col2", 
-	"VPosNormTex0Tex1Tex2Col0Col1Col2Col3", "VPosNormTex0Tex1Tex2Tex3Col0", "VPosNormTex0Tex1Tex2Tex3Col0Col1", "VPosNormTex0Tex1Tex2Tex3Col0Col1Col2", "VPosNormTex0Tex1Tex2Tex3Col0Col1Col2Col3", 
-	"VPosNormBoneTex0", "VPosNormBoneTex0Tex1", "VPosNormBoneTex0Tex1Tex2", "VPosNormBoneTex0Tex1Tex2Tex3", "VPosNormBoneCol0", 
-	"VPosNormBoneCol0Col1", "VPosNormBoneCol0Col1Col2", "VPosNormBoneCol0Col1Col2Col3", "VPosNormBoneTex0Col0", "VPosNormBoneTex0Col0Col1", 
-	"VPosNormBoneTex0Col0Col1Col2", "VPosNormBoneTex0Col0Col1Col2Col3", "VPosNormBoneTex0Tex1Col0", "VPosNormBoneTex0Tex1Col0Col1", "VPosNormBoneTex0Tex1Col0Col1Col2", 
-	"VPosNormBoneTex0Tex1Col0Col1Col2Col3", "VPosNormBoneTex0Tex1Tex2Col0", "VPosNormBoneTex0Tex1Tex2Col0Col1", "VPosNormBoneTex0Tex1Tex2Col0Col1Col2", "VPosNormBoneTex0Tex1Tex2Col0Col1Col2Col3", 
-	"VPosNormBoneTex0Tex1Tex2Tex3Col0", "VPosNormBoneTex0Tex1Tex2Tex3Col0Col1", "VPosNormBoneTex0Tex1Tex2Tex3Col0Col1Col2", "VPosNormBoneTex0Tex1Tex2Tex3Col0Col1Col2Col3", "VPosNormBone", 
-	"VPosNormBlendTex0Tex1Tex2Tex3Tex4", "VPosNormTanTex0", "VPosNormTanBiTanTex0", "VPosNormTex04", "VPosNormTex04Col0", 
-	"VPosNormTex04Tex14Tex24Color0", "VPosNormBoneTanTex0Col0", "VPosNormTex04F", "VPosNormTex0Col0F", "VPosNormTex04Tex14Tex24Color0F"
-};
+	"VPosNormTex0Col0Col1", "VPosNormTex0Col0Col1Col2", "VPosNormTex0Col0Col1Col2Col3", "VPosNormTex0Tex1Col0", "VPosNormTex0Tex1Col0Col1",
+	"VPosNormTex0Tex1Col0Col1Col2", "VPosNormTex0Tex1Col0Col1Col2Col3", "VPosNormTex0Tex1Tex2Col0", "VPosNormTex0Tex1Tex2Col0Col1", "VPosNormTex0Tex1Tex2Col0Col1Col2",
+	"VPosNormTex0Tex1Tex2Col0Col1Col2Col3", "VPosNormTex0Tex1Tex2Tex3Col0", "VPosNormTex0Tex1Tex2Tex3Col0Col1", "VPosNormTex0Tex1Tex2Tex3Col0Col1Col2", "VPosNormTex0Tex1Tex2Tex3Col0Col1Col2Col3",
+	"VPosNormBoneTex0", "VPosNormBoneTex0Tex1", "VPosNormBoneTex0Tex1Tex2", "VPosNormBoneTex0Tex1Tex2Tex3", "VPosNormBoneCol0",
+	"VPosNormBoneCol0Col1", "VPosNormBoneCol0Col1Col2", "VPosNormBoneCol0Col1Col2Col3", "VPosNormBoneTex0Col0", "VPosNormBoneTex0Col0Col1",
+	"VPosNormBoneTex0Col0Col1Col2", "VPosNormBoneTex0Col0Col1Col2Col3", "VPosNormBoneTex0Tex1Col0", "VPosNormBoneTex0Tex1Col0Col1", "VPosNormBoneTex0Tex1Col0Col1Col2",
+	"VPosNormBoneTex0Tex1Col0Col1Col2Col3", "VPosNormBoneTex0Tex1Tex2Col0", "VPosNormBoneTex0Tex1Tex2Col0Col1", "VPosNormBoneTex0Tex1Tex2Col0Col1Col2", "VPosNormBoneTex0Tex1Tex2Col0Col1Col2Col3",
+	"VPosNormBoneTex0Tex1Tex2Tex3Col0", "VPosNormBoneTex0Tex1Tex2Tex3Col0Col1", "VPosNormBoneTex0Tex1Tex2Tex3Col0Col1Col2", "VPosNormBoneTex0Tex1Tex2Tex3Col0Col1Col2Col3", "VPosNormBone",
+	"VPosNormBlendTex0Tex1Tex2Tex3Tex4", "VPosNormTanTex0", "VPosNormTanBiTanTex0", "VPosNormTex04", "VPosNormTex04Col0",
+	"VPosNormTex04Tex14Tex24Color0", "VPosNormBoneTanTex0Col0", "VPosNormTex04F", "VPosNormTex0Col0F", "VPosNormTex04Tex14Tex24Color0F",
+	"VPosNormTex0F", "VPosNormTex0XBOX"	};
 
 //reverse triangle winding
 static void FlipIndexs(USHORT *pInds, int numIdx)
@@ -83,11 +84,11 @@ static void FlipIndexs(USHORT *pInds, int numIdx)
 }
 
 
-Mesh	*Mesh_Read(GraphicsDevice *pGD, StuffKeeper *pSK, const char *szFileName)
+Mesh	*Mesh_Read(GraphicsDevice *pGD, const char *szFileName)
 {
 	size_t	vertSize;
 	void	*pVerts;
-	BOOL	bNull;
+	BYTE	bNull;
 	int		arrTypeIdx, arrNumVerts;
 	char	nameBuf[64];
 	BYTE	nameLen;
@@ -156,7 +157,7 @@ Mesh	*Mesh_Read(GraphicsDevice *pGD, StuffKeeper *pSK, const char *szFileName)
 	GD_CreateVertexBuffer(pGD, pVerts, vertSize * arrNumVerts, &pMesh->mpVerts);
 
 	//read indexes
-	fread(&bNull, sizeof(BOOL), 1, f);
+	fread(&bNull, sizeof(BYTE), 1, f);
 	if(bNull)
 	{
 		USHORT	*pInds;
@@ -169,7 +170,7 @@ Mesh	*Mesh_Read(GraphicsDevice *pGD, StuffKeeper *pSK, const char *szFileName)
 		fread(pInds, numIdx * sizeof(USHORT), 1, f);
 
 		//winding order is different in linux I guess
-		FlipIndexs(pInds, numIdx);
+//		FlipIndexs(pInds, numIdx);
 
 //		MakeIBDesc(&bufDesc, numIdx * sizeof(USHORT));
 //		pMesh->mpIndexs	=GD_CreateBufferWithData(pGD, &bufDesc, pInds, bufDesc.ByteWidth);
@@ -184,20 +185,10 @@ Mesh	*Mesh_Read(GraphicsDevice *pGD, StuffKeeper *pSK, const char *szFileName)
 
 
 //an early draw effort, later will have material lib
-void	Mesh_Draw(Mesh *pMesh, GraphicsDevice *pGD, StuffKeeper *pSK,
-	const char *szVS, const char *szPS, const char *szTex)
+void	Mesh_Draw(Mesh *pMesh, GraphicsDevice *pGD)
 {
-	/*
-	GD_VSSetShader(pGD, StuffKeeper_GetVertexShader(pSK, szVS));
-	GD_PSSetShader(pGD, StuffKeeper_GetPixelShader(pSK, szPS));
-
-	GD_IASetVertexBuffers(pGD, pMesh->mpVerts, pMesh->mVertSize, 0);
-	GD_IASetIndexBuffers(pGD, pMesh->mpIndexs, DXGI_FORMAT_R16_UINT, 0);
-
-	GD_IASetInputLayout(pGD, pMesh->mpLayout);
-
-	GD_PSSetSRV(pGD, StuffKeeper_GetSRV(pSK, szTex), 0);
-
-	GD_DrawIndexed(pGD, pMesh->mNumTriangles * 3, 0, 0);
-	*/
+	GD_SetStreamSource(pGD, 0, pMesh->mpVerts, pMesh->mVertSize);
+	GD_SetIndices(pGD, pMesh->mpIndexs, 0);
+	GD_DrawIndexedPrimitive(pGD, D3DPT_TRIANGLELIST,
+						0, pMesh->mNumTriangles);
 }
