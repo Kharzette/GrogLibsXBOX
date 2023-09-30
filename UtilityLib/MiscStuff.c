@@ -1,6 +1,5 @@
 
-
-float __cdecl WrapAngleDegrees(float inDeg)
+float __cdecl	WrapAngleDegrees(float inDeg)
 {
 	float	retDeg, degWrap	=360;
 
@@ -12,3 +11,4 @@ float __cdecl WrapAngleDegrees(float inDeg)
 
 	return	retDeg;
 }
+

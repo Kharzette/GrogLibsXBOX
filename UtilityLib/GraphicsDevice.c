@@ -162,6 +162,13 @@ D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD, BYTE **pRows, int w, int h, int 
 }
 
 
+HRESULT	GD_CreateTextureFromFile(GraphicsDevice *pGD,
+								 LPDIRECT3DTEXTURE8 *ppTex, const char *pFileName)
+{
+	return	D3DXCreateTextureFromFile(pGD->mpDevice, pFileName, ppTex);
+}
+
+
 HRESULT	GD_CreateVertexBuffer(GraphicsDevice *pGD, void *pVertData,
 				DWORD len, LPDIRECT3DVERTEXBUFFER8 *ppVB)
 {

@@ -208,7 +208,25 @@
 				RelativePath=".\UtilityLib\ListStuff.h">
 			</File>
 			<File
+				RelativePath=".\UtilityLib\MathCrap.cpp">
+				<FileConfiguration
+					Name="Debug|Xbox">
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="2"/>
+				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\UtilityLib\MathCrap.h">
+			</File>
+			<File
 				RelativePath=".\UtilityLib\MiscStuff.c">
+				<FileConfiguration
+					Name="Debug|Xbox">
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="1"/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\UtilityLib\MiscStuff.h">
@@ -235,12 +253,34 @@
 		<Filter
 			Name="MaterialLib"
 			Filter="">
+			<File
+				RelativePath=".\MaterialLib\StuffKeeper.c">
+			</File>
+			<File
+				RelativePath=".\MaterialLib\StuffKeeper.h">
+			</File>
 		</Filter>
 		<Filter
 			Name="ShaderLib"
 			Filter="">
 			<File
 				RelativePath=".\ShaderLib\Static.vsh">
+			</File>
+		</Filter>
+		<Filter
+			Name="MeshLib"
+			Filter="">
+			<File
+				RelativePath=".\MeshLib\Mesh.c">
+			</File>
+			<File
+				RelativePath=".\MeshLib\Mesh.h">
+			</File>
+			<File
+				RelativePath=".\MeshLib\MeshBound.c">
+			</File>
+			<File
+				RelativePath=".\MeshLib\MeshBound.h">
 			</File>
 		</Filter>
 	</Files>

@@ -5,10 +5,10 @@
 
 
 //does pSZ start with Thing?
-extern bool	SZ_StartsWith(const char *pSZ, const char *pszThing);
-extern bool	SZ_StartsWithCCUT(const char *pSZ, const UT_string *pszThing);
-extern bool	SZ_StartsWithUTUT(const UT_string *pSZ, const UT_string *pszThing);
-extern bool	SZ_StartsWithUTCC(const UT_string *pSZ, const char *pszThing);
+extern BOOL	SZ_StartsWith(const char *pSZ, const char *pszThing);
+extern BOOL	SZ_StartsWithCCUT(const char *pSZ, const UT_string *pszThing);
+extern BOOL	SZ_StartsWithUTUT(const UT_string *pSZ, const UT_string *pszThing);
+extern BOOL	SZ_StartsWithUTCC(const UT_string *pSZ, const char *pszThing);
 
 //trim spaces, tabs, and junx from start and end, allocs a new copy
 extern UT_string	*SZ_Trim(const char *pSZ);

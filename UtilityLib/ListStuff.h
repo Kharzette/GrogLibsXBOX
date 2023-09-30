@@ -15,7 +15,7 @@ extern void	SZList_AddUTNoCopy(StringList **ppSL, UT_string *pSZ);
 extern void	SZList_Clear(StringList **ppSL);
 extern void	SZList_Remove(StringList **ppSL, const char *pSZ);
 extern void	SZList_RemoveUT(StringList **ppSL, const UT_string *pSZ);
-extern bool	SZList_Contains(const StringList *pSL, const char *pSZ);
+extern BOOL	SZList_Contains(const StringList *pSL, const char *pSZ);
 extern int	SZList_Count(const StringList *pSL);
 
 //const iteration, return null when done?
