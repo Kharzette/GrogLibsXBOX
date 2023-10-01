@@ -13,6 +13,8 @@ extern HRESULT	GD_BeginScene(GraphicsDevice *pGD);
 extern HRESULT	GD_EndScene(GraphicsDevice *pGD);
 extern HRESULT	GD_DrawIndexedPrimitive(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,
 								UINT startIdx, UINT primCount);
+extern HRESULT	GD_DrawVertices(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,
+								UINT startIdx, UINT vCount);
 
 //gets
 extern int	GD_GetWidth(const GraphicsDevice *pGD);

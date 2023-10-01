@@ -287,12 +287,12 @@ HRESULT	GD_SetRenderState(GraphicsDevice *pGD, D3DRENDERSTATETYPE state, DWORD v
 
 HRESULT	GD_SetVertexShader(GraphicsDevice *pGD, DWORD handle)
 {
-	return	IDirect3DDevice8_SetVertexShader(pGD, handle);
+	return	IDirect3DDevice8_SetVertexShader(pGD->mpDevice, handle);
 }
 
 HRESULT	GD_SetPixelShader(GraphicsDevice *pGD, DWORD handle)
 {
-	return	IDirect3DDevice8_SetPixelShader(pGD, handle);
+	return	IDirect3DDevice8_SetPixelShader(pGD->mpDevice, handle);
 }
 
 HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,
@@ -310,4 +310,10 @@ HRESULT	GD_DrawIndexedPrimitive(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,
 								UINT startIdx, UINT primCount)
 {
 	return	IDirect3DDevice8_DrawIndexedPrimitive(pGD->mpDevice, primType, 0, 0, startIdx, primCount);
+}
+
+HRESULT	GD_DrawVertices(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,
+						UINT startIdx, UINT vCount)
+{
+	return	IDirect3DDevice8_DrawVertices(pGD->mpDevice, primType, 0, vCount);
 }

@@ -1,0 +1,12 @@
+xps.1.1
+
+//constants
+
+//output registers
+//r0		output pixel
+
+//input registers
+//c0		star colour
+
+//testing if my VS values are coming thru
+mov		r0, c0
