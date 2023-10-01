@@ -176,6 +176,11 @@ HRESULT	GD_CreateVertexBuffer(GraphicsDevice *pGD, void *pVertData,
 	HRESULT	hres;
 
 	*ppVB	=D3DDevice_CreateVertexBuffer2(len);
+
+	if(pVertData == NULL)
+	{
+		return	S_OK;
+	}
 	
 	hres	=IDirect3DVertexBuffer8_Lock(*ppVB, 0, 0, &pVBData, 0);
 	if(FAILED(hres))
@@ -304,6 +309,29 @@ HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,
 HRESULT	GD_SetIndices(GraphicsDevice *pGD, D3DIndexBuffer *pInds, UINT baseVert)
 {
 	return	IDirect3DDevice8_SetIndices(pGD->mpDevice, pInds, baseVert);
+}
+
+HRESULT	GD_SetTexture(GraphicsDevice *pGD, DWORD stage, LPDIRECT3DTEXTURE8 pTex)
+{
+	return	IDirect3DDevice8_SetTexture(pGD->mpDevice, stage, pTex);
+}
+
+HRESULT	GD_SetVBData(GraphicsDevice *pGD, D3DVertexBuffer *pVB,
+				UINT sizeToLock, void *pData)
+{
+	BYTE	*pVBData;
+	HRESULT	hres	=IDirect3DVertexBuffer8_Lock(pVB,
+						0, sizeToLock, &pVBData, 0);
+	if(FAILED(hres))
+	{
+		return	hres;
+	}
+
+	memcpy(pVBData, pData, sizeToLock);
+
+	IDirect3DVertexBuffer8_Unlock(pVB);
+
+	return	S_OK;
 }
 
 HRESULT	GD_DrawIndexedPrimitive(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,

@@ -254,6 +254,12 @@
 			Name="MaterialLib"
 			Filter="">
 			<File
+				RelativePath=".\MaterialLib\Font.c">
+			</File>
+			<File
+				RelativePath=".\MaterialLib\Font.h">
+			</File>
+			<File
 				RelativePath=".\MaterialLib\StuffKeeper.c">
 			</File>
 			<File

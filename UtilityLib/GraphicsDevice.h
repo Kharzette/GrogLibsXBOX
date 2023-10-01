@@ -32,6 +32,9 @@ extern HRESULT	GD_SetPixelShader(GraphicsDevice *pGD, DWORD handle);
 extern HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,
 					D3DVertexBuffer *pVB, UINT stride);
 extern HRESULT	GD_SetIndices(GraphicsDevice *pGD, D3DIndexBuffer *pInds, UINT baseVert);
+extern HRESULT	GD_SetTexture(GraphicsDevice *pGD, DWORD stage, LPDIRECT3DTEXTURE8 pTex);
+extern HRESULT	GD_SetVBData(GraphicsDevice *pGD, D3DVertexBuffer *pVB,
+					UINT sizeToLock, void *pData);
 
 //resource creation / destruction
 extern D3DTexture	*GD_MakeTexture(GraphicsDevice *pGD,

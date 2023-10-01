@@ -1,0 +1,16 @@
+xps.1.1
+
+//constants
+//c0		text colour
+
+//output registers
+//r0		output pixel
+
+//input registers
+//t0		texcoord0
+
+//grab from font texture
+tex		t0
+
+//mul by color
+mul		r0, t0, c0
