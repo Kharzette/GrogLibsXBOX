@@ -76,8 +76,8 @@ D3DXVECTOR2	Font_GetUV(Font *pFont, char letter, int quadIndex)
 		posOffset	-=numColumns;
 	}
 
-	ret.x	=posOffset * pFont->mCellWidth;
-	ret.y	=yOffset * pFont->mCellHeight;
+	ret.x	=(float)(posOffset * pFont->mCellWidth);
+	ret.y	=(float)(yOffset * pFont->mCellHeight);
 
 	switch(quadIndex)
 	{
