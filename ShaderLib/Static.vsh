@@ -91,5 +91,11 @@ mul		r10, r10, c13
 //r4	=(c2 * max(0, LdotN)) + (c1 * (1 - abs(LdotN)))
 add		r4, r4, r9
 
-//D0	=(c2 * max(0, LdotN)) + (c1 * (1 - abs(LdotN))) + (c0 * max(0, -LdotN))
-add		oD0, r4, r10
+//r4	=(c2 * max(0, LdotN)) + (c1 * (1 - abs(LdotN))) + (c0 * max(0, -LdotN))
+add		r4, r4, r10
+
+//D0	=r4 * material colour
+mul		oD0.xyz, r4.xyz, c17.xyz
+
+//alpha value direct move
+mov		oD0.w, c17.w

@@ -27,6 +27,8 @@ extern HRESULT	GD_SetPShaderConstant(GraphicsDevice *pGD,
 					int regNum, void *data, DWORD count);
 extern HRESULT	GD_SetRenderState(GraphicsDevice *pGD,
 					D3DRENDERSTATETYPE state, DWORD val);
+extern HRESULT	GD_SetTextureStageState(GraphicsDevice *pGD,
+					DWORD stage, D3DTEXTURESTAGESTATETYPE type, DWORD val);
 extern HRESULT	GD_SetVertexShader(GraphicsDevice *pGD, DWORD handle);
 extern HRESULT	GD_SetPixelShader(GraphicsDevice *pGD, DWORD handle);
 extern HRESULT	GD_SetStreamSource(GraphicsDevice *pGD, UINT streamNum,

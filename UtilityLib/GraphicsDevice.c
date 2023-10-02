@@ -290,6 +290,11 @@ HRESULT	GD_SetRenderState(GraphicsDevice *pGD, D3DRENDERSTATETYPE state, DWORD v
 	return	IDirect3DDevice8_SetRenderState(pGD->mpDevice, state, val);
 }
 
+HRESULT	GD_SetTextureStageState(GraphicsDevice *pGD, DWORD stage, D3DTEXTURESTAGESTATETYPE type, DWORD val)
+{
+	return	IDirect3DDevice8_SetTextureStageState(pGD->mpDevice, stage, type, val);
+}
+
 HRESULT	GD_SetVertexShader(GraphicsDevice *pGD, DWORD handle)
 {
 	return	IDirect3DDevice8_SetVertexShader(pGD->mpDevice, handle);
