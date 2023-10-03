@@ -232,6 +232,12 @@
 				RelativePath=".\UtilityLib\MiscStuff.h">
 			</File>
 			<File
+				RelativePath=".\UtilityLib\Physics.c">
+			</File>
+			<File
+				RelativePath=".\UtilityLib\Physics.h">
+			</File>
+			<File
 				RelativePath=".\UtilityLib\PrimFactory.c">
 			</File>
 			<File
