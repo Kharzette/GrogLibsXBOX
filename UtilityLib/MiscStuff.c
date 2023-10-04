@@ -28,3 +28,32 @@ float __cdecl	WrapAngleRadians(float inRad)
 	return	retRad;
 }
 
+//messing around with fcmov, doesn't work
+float __cdecl	Clamp2(float val, float min, float max)
+{
+	float	fret;
+
+	__asm	fld		min;
+	__asm	fld		val;
+	__asm	fcom	st(1);
+	__asm	fcmovb	st(0), st(1);
+	__asm	fstp	fret;
+	__asm	fstp	max;
+
+	return	fret;
+}
+
+float	Clamp(float val, float min, float max)
+{
+	if(val > max)
+	{
+		return	max;
+	}
+
+	if(val < min)
+	{
+		return	min;
+	}
+
+	return	val;
+}

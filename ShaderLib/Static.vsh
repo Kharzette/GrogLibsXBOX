@@ -1,8 +1,8 @@
 xvs.1.1
 
 //constants
-//c0-c3		view matrix
-//c4-c7		projection matrix
+//c0-c3		WVP matrix
+//c4-c7		??
 //c8-11		world matrix
 //c12		eye position
 //trilight stuff http://home.comcast.net/~tom_forsyth/blog.wiki.html#Trilights
@@ -30,14 +30,8 @@ xvs.1.1
 //v1		Normal
 //v2		TexCoord0 in xy
 
-//mul position into world space
-m4x4	r0, v0, c8
-
-//mul by view
-m4x4	r0, r0, c0
-
-//mul by proj
-m4x4	oPos, r0, c4
+//mul position into screen space
+m4x4	oPos, v0, c0
 
 //world transform normal
 m4x4	r1, v1, c8
