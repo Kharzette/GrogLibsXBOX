@@ -299,14 +299,14 @@ static float TicsToMilliSeconds(const UpdateTimer *pUT, UINT64 tics)
 
 static UINT64 SecondsToTics(const UpdateTimer *pUT, float seconds)
 {
-	UINT64	tics	=seconds * pUT->mTicsPerSecond;
+	UINT64	tics	=(UINT64)(seconds * pUT->mTicsPerSecond);
 
 	return	tics;
 }
 
 static UINT64 MilliSecondsToTics(const UpdateTimer *pUT, float milliSeconds)
 {
-	UINT64	tics	=milliSeconds * pUT->mTicsPerSecond;
+	UINT64	tics	=(UINT64)(milliSeconds * pUT->mTicsPerSecond);
 
 	return	tics / 1000;
 }

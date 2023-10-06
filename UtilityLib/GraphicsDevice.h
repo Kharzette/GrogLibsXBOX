@@ -4,7 +4,7 @@
 typedef struct GraphicsDevice_t	GraphicsDevice;
 
 
-extern BOOL		GD_Init(GraphicsDevice **ppGD, int w, int h);
+extern BOOL		GD_Init(GraphicsDevice **ppGD, int w, int h, BOOL bVSync);
 extern void		GD_Destroy(GraphicsDevice **ppGD);
 
 extern HRESULT	GD_Present(GraphicsDevice *pGD);

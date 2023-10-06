@@ -16,7 +16,7 @@ typedef struct GraphicsDevice_t
 
 
 //try to make a device
-BOOL	GD_Init(GraphicsDevice **ppGD, int w, int h)
+BOOL	GD_Init(GraphicsDevice **ppGD, int w, int h, BOOL bVSync)
 {
 	HRESULT					hres;
 	GraphicsDevice			*pGD;
@@ -50,8 +50,14 @@ BOOL	GD_Init(GraphicsDevice **ppGD, int w, int h)
 	pp.AutoDepthStencilFormat	=D3DFMT_D24S8;
 	pp.SwapEffect				=D3DSWAPEFFECT_DISCARD;
 
-	//not sure what this does yet
-	pp.FullScreen_PresentationInterval	=D3DPRESENT_INTERVAL_ONE_OR_IMMEDIATE;
+	if(bVSync)
+	{
+		pp.FullScreen_PresentationInterval	=D3DPRESENT_INTERVAL_ONE_OR_IMMEDIATE;
+	}
+	else
+	{
+		pp.FullScreen_PresentationInterval	=D3DPRESENT_INTERVAL_IMMEDIATE;
+	}
 
 	hres	=IDirect3D8_CreateDevice(pGD->mpD3D, 0, D3DDEVTYPE_HAL, NULL,
 		D3DCREATE_HARDWARE_VERTEXPROCESSING, &pp, &pGD->mpDevice);
@@ -318,7 +324,8 @@ HRESULT	GD_SetIndices(GraphicsDevice *pGD, D3DIndexBuffer *pInds, UINT baseVert)
 
 HRESULT	GD_SetTexture(GraphicsDevice *pGD, DWORD stage, LPDIRECT3DTEXTURE8 pTex)
 {
-	return	IDirect3DDevice8_SetTexture(pGD->mpDevice, stage, pTex);
+	return	IDirect3DDevice8_SetTexture(pGD->mpDevice, stage,
+		(D3DBaseTexture *)pTex);
 }
 
 HRESULT	GD_SetVBData(GraphicsDevice *pGD, D3DVertexBuffer *pVB,

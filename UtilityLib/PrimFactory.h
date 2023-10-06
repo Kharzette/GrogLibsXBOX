@@ -16,3 +16,5 @@ typedef struct	PrimObject_t
 
 PrimObject	*PF_CreateCubeFromCorners(const D3DXVECTOR3 *pCorners, GraphicsDevice *pGD);
 PrimObject	*PF_CreateCube(float size, GraphicsDevice *pGD);
+PrimObject	*PF_CreateSphere(GraphicsDevice *pGD,
+				D3DXVECTOR3 center, float radius);

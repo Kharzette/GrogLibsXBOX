@@ -1,5 +1,4 @@
-//#include	<xtl.h>
-//#include	<d3d8.h>
+#include	<xtl.h>
 #include	"PrimFactory.h"
 #include	"GraphicsDevice.h"
 
@@ -204,4 +203,193 @@ PrimObject	*PF_CreateCube(float size, GraphicsDevice *pGD)
 	Vec3Add3(&corners[7], &yScaled, &xNeg, &zNeg);
 
 	return	PF_CreateCubeFromCorners(corners, pGD);
+}
+
+
+PrimObject	*PF_CreateSphere(GraphicsDevice *pGD,
+			D3DXVECTOR3 center, float radius)
+{
+	int	theta, phi, i, ofs;
+
+	//density
+	int	dtheta	=10;
+	int	dphi	=10;
+
+	VPosNormTex0	*pVPNT;
+	PrimObject		*pObj;
+	HRESULT			hres;
+
+	D3DXVECTOR3	*pPoints;
+	USHORT		*pInds;
+	
+	//run through the build to
+	//count how much space is needed
+	USHORT	curIdx	=0;
+	int		indIdx	=0;
+	for(theta=-90;theta <= 0-dtheta;theta += dtheta)
+	{
+		for(phi=0;phi <= 360-dphi;phi += dphi)
+		{
+			D3DXVECTOR3	pos	={	0.0f, 0.0f, 0.0f	};
+
+			float	rtheta	=D3DXToRadian(theta);
+			float	rdtheta	=D3DXToRadian(dtheta);
+			float	rphi	=D3DXToRadian(phi);
+			float	rdphi	=D3DXToRadian(dphi);
+
+			if(theta > -90 && theta < 0)
+			{
+				indIdx++;
+				indIdx++;
+				indIdx++;
+				indIdx++;
+				indIdx++;
+				indIdx++;
+
+				curIdx	+=4;
+			}
+			else
+			{
+				indIdx++;
+				indIdx++;
+				indIdx++;
+
+				curIdx	+=3;
+			}
+		}
+	}
+
+	pPoints	=malloc(sizeof(D3DXVECTOR3) * curIdx);
+	pInds	=malloc(2 * indIdx * 2);
+
+	//build and index a hemisphere
+	curIdx	=0;
+	indIdx	=0;
+	for(theta=-90;theta <= 0-dtheta;theta += dtheta)
+	{
+		for(phi=0;phi <= 360-dphi;phi += dphi)
+		{
+			D3DXVECTOR3	pos	={	0.0f, 0.0f, 0.0f	};
+
+			float	rtheta	=D3DXToRadian(theta);
+			float	rdtheta	=D3DXToRadian(dtheta);
+			float	rphi	=D3DXToRadian(phi);
+			float	rdphi	=D3DXToRadian(dphi);
+
+			pos.x	=(float)(cos(rtheta) * cos(rphi));
+			pos.y	=(float)(cos(rtheta) * sin(rphi));
+			pos.z	=(float)sin(rtheta);
+
+			pPoints[curIdx]	=pos;
+			
+			pos.x	=(float)(cos((rtheta + rdtheta)) * cos(rphi));
+			pos.y	=(float)(cos((rtheta + rdtheta)) * sin(rphi));
+			pos.z	=(float)sin((rtheta + rdtheta));
+
+			pPoints[curIdx + 1]	=pos;
+
+			pos.x	=(float)(cos((rtheta + rdtheta)) * cos((rphi + rdphi)));
+			pos.y	=(float)(cos((rtheta + rdtheta)) * sin((rphi + rdphi)));
+			pos.z	=(float)sin((rtheta + rdtheta));
+
+			pPoints[curIdx + 2]	=pos;
+
+			if(theta > -90 && theta < 0)
+			{
+				pos.x	=(float)(cos(rtheta) * cos((rphi + rdphi)));
+				pos.y	=(float)(cos(rtheta) * sin((rphi + rdphi)));
+				pos.z	=(float)sin(rtheta);
+
+				pPoints[curIdx + 3]	=pos;
+
+				pInds[indIdx++]	=curIdx;
+				pInds[indIdx++]	=((USHORT)(curIdx + 1));
+				pInds[indIdx++]	=((USHORT)(curIdx + 2));
+				pInds[indIdx++]	=((USHORT)(curIdx + 0));
+				pInds[indIdx++]	=((USHORT)(curIdx + 2));
+				pInds[indIdx++]	=((USHORT)(curIdx + 3));
+
+				curIdx	+=4;
+			}
+			else
+			{
+				pInds[indIdx++]	=(curIdx);
+				pInds[indIdx++]	=((USHORT)(curIdx + 1));
+				pInds[indIdx++]	=((USHORT)(curIdx + 2));
+
+				curIdx	+=3;
+			}
+		}
+	}
+
+	pVPNT	=malloc(sizeof(VPosNormTex0) * curIdx * 2);
+
+	//copy in hemisphere
+	for(i=0;i < curIdx;i++)
+	{
+		D3DXVec3Normalize(&pVPNT[i].Normal, &pPoints[i]);
+
+		D3DXVec3Scale(&pVPNT[i].Position, &pVPNT[i].Normal, radius);
+
+		//in case you want something offcenter!?
+		D3DXVec3Add(&pVPNT[i].Position, &center, &pVPNT[i].Position);
+
+		//I might just do a cubemap lookup from the normal?
+		pVPNT[i].TexCoord0.x	=pVPNT[i].TexCoord0.y	=0.0f;
+	}
+
+	//dupe for the other half
+	ofs	=curIdx;
+	for(i=ofs;i < (curIdx + ofs);i++)
+	{
+		D3DXVec3Normalize(&pVPNT[i].Normal, &pPoints[i - ofs]);
+
+		D3DXVec3Scale(&pVPNT[i].Position, &pVPNT[i].Normal, -radius);
+
+		//in case you want something offcenter!?
+		D3DXVec3Add(&pVPNT[i].Position, &center, &pVPNT[i].Position);
+
+		//I might just do a cubemap lookup from the normal?
+		pVPNT[i].TexCoord0.x	=pVPNT[i].TexCoord0.y	=1.0f;	//set to 1 for debugging
+	}
+
+	//indexes for the other half
+	for(i=0;i < indIdx;i++)
+	{
+		pInds[i + indIdx]	=pInds[(indIdx - 1) - i] + curIdx;
+	}
+
+	//return object
+	pObj	=malloc(sizeof(PrimObject));
+	if(pObj == NULL)
+	{
+		return	NULL;
+	}
+
+	pObj->mVertCount	=curIdx;
+	pObj->mIndexCount	=indIdx * 2;
+	pObj->mStride		=sizeof(VPosNormTex0);
+
+	//make vertex buffer
+	hres	=GD_CreateVertexBuffer(pGD, pVPNT, pObj->mStride * curIdx * 2, &pObj->mpVB);
+	if(FAILED(hres))
+	{
+		free(pObj);
+		return	NULL;
+	}
+
+	//make index buffer
+	hres	=GD_CreateIndexBuffer(pGD, pInds, indIdx * 2 * 2, &pObj->mpIB);
+	if(FAILED(hres))
+	{
+		IDirect3DVertexBuffer8_Release(pObj->mpVB);
+		free(pObj);
+		return	NULL;
+	}
+
+	free(pPoints);
+	free(pInds);
+	free(pVPNT);
+
+	return	pObj;
 }
