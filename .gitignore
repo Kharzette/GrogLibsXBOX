@@ -1,6 +1,10 @@
 # Prerequisites
 *.d
 
+# Xbox compiled shaders
+*.xvu
+*.xpu
+
 # Object files
 *.o
 *.ko
