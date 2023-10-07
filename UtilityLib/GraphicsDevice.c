@@ -275,6 +275,13 @@ HRESULT	GD_Clear(GraphicsDevice *pGD, D3DCOLOR clearColour)
 		clearColour, 1.0f, 0L);
 }
 
+HRESULT	GD_ClearDepthStencilOnly(GraphicsDevice *pGD, D3DCOLOR clearColour)
+{
+	return	IDirect3DDevice8_Clear(pGD->mpDevice, 0, NULL,
+		D3DCLEAR_ZBUFFER|D3DCLEAR_STENCIL,
+		clearColour, 1.0f, 0L);
+}
+
 HRESULT	GD_BeginScene(GraphicsDevice *pGD)
 {
 	return	IDirect3DDevice8_BeginScene(pGD->mpDevice);

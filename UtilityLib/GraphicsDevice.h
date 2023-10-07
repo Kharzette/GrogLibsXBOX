@@ -9,6 +9,7 @@ extern void		GD_Destroy(GraphicsDevice **ppGD);
 
 extern HRESULT	GD_Present(GraphicsDevice *pGD);
 extern HRESULT	GD_Clear(GraphicsDevice *pGD, D3DCOLOR clearColour);
+extern HRESULT	GD_ClearDepthStencilOnly(GraphicsDevice *pGD, D3DCOLOR clearColour);
 extern HRESULT	GD_BeginScene(GraphicsDevice *pGD);
 extern HRESULT	GD_EndScene(GraphicsDevice *pGD);
 extern HRESULT	GD_DrawIndexedPrimitive(GraphicsDevice *pGD, D3DPRIMITIVETYPE primType,

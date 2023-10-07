@@ -64,7 +64,7 @@ static void Forces(Physics *pPhys, const PhyState *pState, D3DXVECTOR3 *pForce, 
 	pPhys->mExternalDV.x	=pPhys->mExternalDV.y	=pPhys->mExternalDV.z	=0.0f;
 }
 
-static void	Evaluate(Physics *pPhys, const PhyState *pState, float dt, Derivative *pDer)
+static void	Evaluate(const Physics *pPhys, const PhyState *pState, float dt, Derivative *pDer)
 {
 	pDer->mVelocity	=pState->mVelocity;
 	pDer->mSpin		=pState->mSpin;
@@ -72,7 +72,7 @@ static void	Evaluate(Physics *pPhys, const PhyState *pState, float dt, Derivativ
 	Forces(pPhys, pState, &pDer->mForce, &pDer->mTorque);
 }
 
-static void Evaluate2(Physics *pPhys, PhyState *pState, float dt,
+static void Evaluate2(const Physics *pPhys, PhyState *pState, float dt,
 	const Derivative *pDerIn, Derivative *pDerOut)
 {
 	D3DXVECTOR3	scaled;
@@ -103,7 +103,7 @@ static void Evaluate2(Physics *pPhys, PhyState *pState, float dt,
 }
 
 
-static void	Integrate(Physics *pPhys, PhyState *pState, float dt)
+static void	Integrate(const Physics *pPhys, PhyState *pState, float dt)
 {
 	D3DXVECTOR3	accum;
 	Derivative	a, b, c, d;
@@ -205,17 +205,17 @@ void	Physics_ApplyForce(Physics *pPhys, const D3DXVECTOR3 *pForce)
 	D3DXVec3Add(&pPhys->mExternalDV, &pPhys->mExternalDV, &forceOverMass);
 }
 
-void	Physics_GetVelocity(Physics *pPhys, D3DXVECTOR3 *pOutVel)
+void	Physics_GetVelocity(const Physics *pPhys, D3DXVECTOR3 *pOutVel)
 {
 	*pOutVel	=pPhys->mCur.mVelocity;
 }
 
-void	Physics_GetPosition(Physics *pPhys, D3DXVECTOR3 *pOutPos)
+void	Physics_GetPosition(const Physics *pPhys, D3DXVECTOR3 *pOutPos)
 {
 	*pOutPos	=pPhys->mCur.mPosition;
 }
 
-void	Physics_GetOrient(Physics *pPhys, D3DXQUATERNION *pOutOrient)
+void	Physics_GetOrient(const Physics *pPhys, D3DXQUATERNION *pOutOrient)
 {
 	*pOutOrient	=pPhys->mCur.mOrient;
 }
