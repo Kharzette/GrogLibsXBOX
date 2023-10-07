@@ -49,7 +49,9 @@ extern HRESULT	GD_CreateVertexBuffer(GraphicsDevice *pGD, void *pVertData,
 extern HRESULT	GD_CreateIndexBuffer(GraphicsDevice *pGD, void *pIdxData,
 					DWORD len, LPDIRECT3DINDEXBUFFER8 *ppIB);
 extern HRESULT	GD_CreateTextureFromFile(GraphicsDevice *pGD,
-										 LPDIRECT3DTEXTURE8 *ppTex, const char *pFileName);
+						LPDIRECT3DTEXTURE8 *ppTex, const char *pFileName);
+extern HRESULT	GD_CreateCubeTextureFromFile(GraphicsDevice *pGD,
+					IDirect3DCubeTexture8 **ppCube, const char *pFileName);
 
 //shader creation stuff
 extern DWORD	GD_CreateVertexShader(GraphicsDevice *pGD,

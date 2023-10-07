@@ -1,0 +1,15 @@
+xps.1.1
+
+//constants
+
+//output registers
+//r0		output pixel
+
+//input registers
+//t0		Object space normal
+
+//lookup  into a cubemap
+tex		t0
+
+//mul by colour into r0
+mul		r0, t0, v0

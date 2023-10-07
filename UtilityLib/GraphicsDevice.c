@@ -175,6 +175,13 @@ HRESULT	GD_CreateTextureFromFile(GraphicsDevice *pGD,
 }
 
 
+HRESULT	GD_CreateCubeTextureFromFile(GraphicsDevice *pGD,
+	IDirect3DCubeTexture8 **ppCube, const char *pFileName)
+{
+	return	D3DXCreateCubeTextureFromFile(pGD->mpDevice, pFileName, ppCube);
+}
+
+
 HRESULT	GD_CreateVertexBuffer(GraphicsDevice *pGD, void *pVertData,
 				DWORD len, LPDIRECT3DVERTEXBUFFER8 *ppVB)
 {

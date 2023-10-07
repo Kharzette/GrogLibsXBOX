@@ -342,9 +342,9 @@ PrimObject	*PF_CreateSphere(GraphicsDevice *pGD,
 	ofs	=curIdx;
 	for(i=ofs;i < (curIdx + ofs);i++)
 	{
-		D3DXVec3Normalize(&pVPNT[i].Normal, &pPoints[i - ofs]);
+		D3DXVec3Scale(&pVPNT[i].Normal, &pPoints[i - ofs], -1.0f);
 
-		D3DXVec3Scale(&pVPNT[i].Position, &pVPNT[i].Normal, -radius);
+		D3DXVec3Scale(&pVPNT[i].Position, &pVPNT[i].Normal, radius);
 
 		//in case you want something offcenter!?
 		D3DXVec3Add(&pVPNT[i].Position, &center, &pVPNT[i].Position);
