@@ -210,9 +210,9 @@ void	Physics_GetVelocity(const Physics *pPhys, D3DXVECTOR3 *pOutVel)
 	*pOutVel	=pPhys->mCur.mVelocity;
 }
 
-void	Physics_GetPosition(const Physics *pPhys, D3DXVECTOR3 *pOutPos)
+const D3DXVECTOR3	*Physics_GetPosition(const Physics *pPhys)
 {
-	*pOutPos	=pPhys->mCur.mPosition;
+	return	&pPhys->mCur.mPosition;
 }
 
 void	Physics_GetOrient(const Physics *pPhys, D3DXQUATERNION *pOutOrient)

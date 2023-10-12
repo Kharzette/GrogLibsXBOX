@@ -81,6 +81,21 @@ float	Clamp(float val, float min, float max)
 	return	val;
 }
 
+int	ClampInt(int val, int min, int max)
+{
+	if(val > max)
+	{
+		return	max;
+	}
+
+	if(val < min)
+	{
+		return	min;
+	}
+
+	return	val;
+}
+
 //adapted this from CGLM
 //I use it with linux / vulkan alot
 //No idea how it works!

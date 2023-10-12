@@ -15,5 +15,6 @@ extern void	Physics_ApplyForce(Physics *pPhys, const D3DXVECTOR3 *pForce);
 extern void	Physics_ApplyTorque(Physics *pPhys, const D3DXVECTOR3 *pAxis);
 
 extern void	Physics_GetVelocity(const Physics *pPhys, D3DXVECTOR3 *pOutVel);
-extern void	Physics_GetPosition(const Physics *pPhys, D3DXVECTOR3 *pOutPos);
 extern void	Physics_GetOrient(const Physics *pPhys, D3DXQUATERNION *pOutOrient);
+
+extern const D3DXVECTOR3	*Physics_GetPosition(const Physics *pPhys);
