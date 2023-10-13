@@ -33,8 +33,19 @@ mov		oT0, v1
 //world transform normal into R1
 m4x4	r1, v1, c8
 
+//normalize r1
+
+//get vector length squared in r3.w
+dp3		r3, r1, r1
+
+//get vector length in r4
+rsq		r4, r3
+
+//mul to normalize
+mul		r5, r1, r4
+
 //compute LdotN
-dp3		r2, r1, c16.xyz
+dp3		r2, r5, c16.xyz
 
 //store material colour * LdotN
 mul		oD0, r2, c17
